@@ -54,7 +54,7 @@
 
             updateUI(`Loading ...`);
 
-            let bestMatch = await getBestMatchTech(cloudHost, account, company, activityID);
+            let bestMatch = await getBestMatchTech(activityID);
 
             updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
           });
@@ -65,7 +65,7 @@
 
             updateUI(`Loading ...`);
 
-            let bestMatch = await getBestMatchTech(cloudHost, account, company, activityID);
+            let bestMatch = await getBestMatchTech(activityID);
 
             updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
           });
