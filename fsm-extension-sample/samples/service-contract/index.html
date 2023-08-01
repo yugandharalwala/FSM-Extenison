@@ -54,11 +54,23 @@
 
             updateUI(`Loading ...`);
 
-            let serviceContract = await getServiceContract(cloudHost, account, company, activityID);
+            let bestMatch = await getBestMatchTech(cloudHost, account, company, activityID);
 
-            updateUI(serviceContract ? `${serviceContract.contractType}` : `NO CONTRACT`);
+            updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
           });
         });
+
+         // Add a listenner expecting activityID
+          shellSdk.onViewState('activityID', async activityID => {
+
+            updateUI(`Loading ...`);
+
+            let bestMatch = await getBestMatchTech(cloudHost, account, company, activityID);
+
+            updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
+          });
+        });
+
       }
     </script>
   </body>
