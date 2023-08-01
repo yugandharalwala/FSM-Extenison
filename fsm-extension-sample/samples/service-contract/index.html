@@ -49,28 +49,16 @@
           // Each extension need to implement its own strategy to fresh it.
           initializeRefreshTokenStrategy(shellSdk, auth);
 
-          // Add a listenner expecting activityID
+       // Add a listenner expecting activityID
           shellSdk.onViewState('activityID', async activityID => {
 
             updateUI(`Loading ...`);
 
             let bestMatch = await getBestMatchTech(activityID);
 
-            updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
+             updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
           });
         });
-
-         // Add a listenner expecting activityID
-          shellSdk.onViewState('activityID', async activityID => {
-
-            updateUI(`Loading ...`);
-
-            let bestMatch = await getBestMatchTech(activityID);
-
-            updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
-          });
-        });
-
       }
     </script>
   </body>
