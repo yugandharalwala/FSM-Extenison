@@ -69,14 +69,21 @@ function getServiceContract(cloudHost, account, company, activity_id) {
               });
 
         });
-         function getBestMatchTech(cloudHost, account, company, activity_id) {
 
+
+  });
+}
+
+function getBestMatchTech(cloudHost, account, company, activity_id) {
+console.log("our custom code::::")
            const headers = {
              'Content-Type': 'application/json',
              'X-Client-ID': 'fsm-extension-sample',
              'X-Client-Version': '1.0.0',
              'Authorization': `bearer ${sessionStorage.getItem('token')}`,
            };
+
+     return new Promise(resolve => {
            fetch('https://us.coresystems.net/workforce-management/portal/bestmatch/v2/best-match', {
               method: 'post',
               headers: headers,
@@ -135,8 +142,5 @@ function getServiceContract(cloudHost, account, company, activity_id) {
                       }
                     }
              }).then(response => console.log(response.json()));
+        });
         }
-
-  });
-}
-
