@@ -74,7 +74,7 @@ function getServiceContract(cloudHost, account, company, activity_id) {
   });
 }
 
-function getBestMatchTech(activity_id) {
+function getBestMatchTech(cloudHost,activity_id) {
 console.log("our custom code::::"+activity_id);
            const headers = {
              'Content-Type': 'application/json',

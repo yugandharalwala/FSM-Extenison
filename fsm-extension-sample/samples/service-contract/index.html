@@ -54,7 +54,7 @@
 
             updateUI(`Loading ...`);
 
-            let bestMatch = await getBestMatchTech(activityID);
+            let bestMatch = await getBestMatchTech(cloudHost,activityID);
 
              updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
           });
