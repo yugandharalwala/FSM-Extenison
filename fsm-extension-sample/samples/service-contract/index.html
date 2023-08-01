@@ -59,6 +59,18 @@
             updateUI(serviceContract ? `${serviceContract.contractType}` : `NO CONTRACT`);
           });
         });
+
+         // Add a listenner expecting activityID
+          shellSdk.onViewState('activityID', async activityID => {
+
+            updateUI(`Loading ...`);
+
+            let bestMatch = await getBestMatchTech(cloudHost, account, company, activityID);
+
+            updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
+          });
+        });
+
       }
     </script>
   </body>
