@@ -82,7 +82,11 @@ console.log("our custom code::::"+activity_id);
              'X-Client-Version': '1.0.0',
              'Authorization': `bearer ${sessionStorage.getItem('token')}`,
            };
-
+  // update UI based on new `name` value
+      shellSdk.onViewState('name', (name) => {
+      console.log(`Hi ${name}`);
+        });
+      });
      return new Promise(resolve => {
            fetch(`https://${cloudHost}/api/v1/jobs/${activity_id}/best-matching-technicians`, {
               method: 'post',
@@ -122,10 +126,15 @@ console.log("our custom code::::"+activity_id);
         });
 
         }
+
+
+/*
 var hrefs = document.getElementsByClassName("ag-menu-option-text");
   for (var i = 0; i < hrefs.length; i++) {
    hrefs.item(i).addEventListener('click', function(e){
-    e.preventDefault(); /*use if you want to prevent the original link following action*/
+    e.preventDefault(); */
+/*use if you want to prevent the original link following action*//*
+
     console.log(e);
    });
-  }
+  }*/
