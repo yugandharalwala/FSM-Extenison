@@ -124,11 +124,22 @@ console.log("our custom code::::"+activity_id);
 
 
 
-var hrefs = document.querySelector(".ag-menu-option-text");
+/*var hrefs = document.querySelector(".ag-menu-option-text");
   for (var i = 0; i < hrefs.length; i++) {
    hrefs.item(i).addEventListener('click', function(e){
-    e.preventDefault(); */
-//use if you want to prevent the original link following action
+    e.preventDefault();
+    //use if you want to prevent the original link following action
     console.log(e);
    });
+  }*/
+  // Define a function to send messages to the parent page
+  function sendMessageToParent() {
+    // Check if the parent window exists and is of the same origin
+    if (window.parent && window.parent !== window && window.parent.location.host === window.location.host) {
+      // Send a message to the parent window
+      window.parent.postMessage('Message from iframe!', 'https://us.coresystems.net/shell/#/planning-dispatching/dispatching-board');
+    }
   }
+
+  // Call the function to send a message to the parent page
+  sendMessageToParent();
