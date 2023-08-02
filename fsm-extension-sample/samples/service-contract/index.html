@@ -32,6 +32,7 @@
           }
         });
 
+
         // Callback on fsm context response
         shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
 
@@ -41,6 +42,10 @@
             account,
             company,
             user,
+            accountId,
+            companyId,
+            userId,
+            selectedLocale,
             // extract authentication data from event content
             auth
           } = JSON.parse(event);
@@ -58,6 +63,10 @@
 
              updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
           });
+         // update UI based on new `name` value
+      shellSdk.onViewState('name', (name) => {
+       updateUI(`Hi ${name}`);
+        });
         });
       }
     </script>
