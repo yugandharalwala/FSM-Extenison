@@ -53,16 +53,6 @@
           // Access_token has a short life stpan and needs to be refreshed before expiring
           // Each extension need to implement its own strategy to fresh it.
           initializeRefreshTokenStrategy(shellSdk, auth);
-
-       // Add a listenner expecting activityID
-         <!-- shellSdk.onViewState('activityID', async activityID => {
-
-            updateUI(`Loading ...`);
-
-            let bestMatch = await getBestMatchTech(cloudHost,activityID);
-
-             updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
-          });-->
          // update UI based on new `name` value
        // Allow plugins to trigger unselect event
       shellSdk.on(SHELL_EVENTS.Version1.TO_APP, (value) => {
