@@ -55,14 +55,14 @@
           initializeRefreshTokenStrategy(shellSdk, auth);
 
        // Add a listenner expecting activityID
-          shellSdk.onViewState('activityID', async activityID => {
+         <!-- shellSdk.onViewState('activityID', async activityID => {
 
             updateUI(`Loading ...`);
 
             let bestMatch = await getBestMatchTech(cloudHost,activityID);
 
              updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
-          });
+          });-->
          // update UI based on new `name` value
       shellSdk.onViewState('name', (name) => {
        updateUI(`Hi ${name}`);
