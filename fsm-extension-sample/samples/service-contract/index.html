@@ -64,11 +64,11 @@
              updateUI(bestMatch ? `${bestMatch[0].matchingScore}` : `Yugandhar`);
           });-->
          // update UI based on new `name` value
-      shellSdk.onViewState('name', (name) => {
-       updateUI(`Hi ${name}`);
-        });
-        });
-      }
+       // Allow plugins to trigger unselect event
+      shellSdk.on(SHELL_EVENTS.Version1.TO_APP, (value) => {
+        console.log(value);
+        updateUI(value);
+      });
     </script>
   </body>
 </html>
