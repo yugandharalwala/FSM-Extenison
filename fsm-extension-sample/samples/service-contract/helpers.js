@@ -133,7 +133,7 @@ console.log("our custom code::::"+activity_id);
    });
   }*/
   // Define a function to send messages to the parent page
-  function sendMessageToParent() {
+ /* function sendMessageToParent() {
     // Check if the parent window exists and is of the same origin
     if (window.parent && window.parent !== window && window.parent.location.host === window.location.host) {
       // Send a message to the parent window
@@ -142,4 +142,4 @@ console.log("our custom code::::"+activity_id);
   }
 
   // Call the function to send a message to the parent page
-  sendMessageToParent();
+  sendMessageToParent();*/
