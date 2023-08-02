@@ -127,8 +127,8 @@ console.log("our custom code::::"+activity_id);
 var hrefs = document.querySelector(".ag-menu-option-text");
   for (var i = 0; i < hrefs.length; i++) {
    hrefs.item(i).addEventListener('click', function(e){
-    e.preventDefault(); */
-//use if you want to prevent the original link following action
+    e.preventDefault();
+    //use if you want to prevent the original link following action
     console.log(e);
    });
   }
