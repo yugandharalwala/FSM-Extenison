@@ -86,7 +86,6 @@ console.log("our custom code::::"+activity_id);
       shellSdk.onViewState('name', (name) => {
       console.log(`Hi ${name}`);
         });
-      });
      return new Promise(resolve => {
            fetch(`https://${cloudHost}/api/v1/jobs/${activity_id}/best-matching-technicians`, {
               method: 'post',
