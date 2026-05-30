@@ -82,5 +82,6 @@ function saveConfig() {
   showToast('Configuration saved!', 'success');
 }
 
+
 // Expose globally
 window.currentConfig = loadConfig;
