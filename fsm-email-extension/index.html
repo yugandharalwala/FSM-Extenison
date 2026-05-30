@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FSM Email Notification Extension</title>
+  <!-- SAP FSM Shell SDK -->
+  <script src="https://unpkg.com/@sap/fsm-shell@latest/release/fsm-shell.js"></script>
+  <!-- EmailJS SDK for client-side email sending -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo-block">
+          <div class="logo-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect width="28" height="28" rx="6" fill="#0070F3"/>
+              <path d="M7 14h14M14 7l7 7-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="logo-title">FSM Email Notifier</div>
+            <div class="logo-sub">SAP Field Service Management Extension</div>
+          </div>
+        </div>
+        <div class="status-badge" id="connectionBadge">
+          <span class="dot"></span>
+          <span id="connectionLabel">Connecting...</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- Config Panel -->
+      <section class="card" id="configCard">
+        <div class="card-header">
+          <div class="card-icon config-icon">⚙️</div>
+          <div>
+            <div class="card-title">Email Configuration</div>
+            <div class="card-sub">Configure EmailJS settings and Distribution Lists</div>
+          </div>
+          <button class="toggle-btn" id="configToggle" onclick="toggleSection('configBody', 'configToggle')">▲</button>
+        </div>
+        <div class="card-body" id="configBody">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>EmailJS Service ID <span class="req">*</span></label>
+              <input type="text" id="emailjsServiceId" placeholder="service_xxxxxxx" />
+            </div>
+            <div class="form-group">
+              <label>EmailJS Template ID <span class="req">*</span></label>
+              <input type="text" id="emailjsTemplateId" placeholder="template_xxxxxxx" />
+            </div>
+            <div class="form-group">
+              <label>EmailJS Public Key <span class="req">*</span></label>
+              <input type="text" id="emailjsPublicKey" placeholder="xxxxxxxxxxxxxxxx" />
+            </div>
+            <div class="form-group">
+              <label>Sender Name</label>
+              <input type="text" id="senderName" placeholder="FSM System Notification" value="FSM System Notification" />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="dl-section">
+            <div class="section-label">Distribution Lists (DLs)</div>
+            <div class="dl-grid" id="dlGrid">
+              <!-- DL rows injected dynamically -->
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="addDLRow()">+ Add DL Email</button>
+          </div>
+
+          <div class="divider"></div>
+          <div class="trigger-section">
+            <div class="section-label">Notification Triggers</div>
+            <div class="trigger-grid">
+              <label class="toggle-label">
+                <input type="checkbox" id="triggerActivityCreate" checked />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                Activity Created
+              </label>
+              <label class="toggle-label">
+                <input type="checkbox" id="triggerActivityUpdate" checked />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                Activity Updated
+              </label>
+              <label class="toggle-label">
+                <input type="checkbox" id="triggerReservationCreate" checked />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                Reservation Created
+              </label>
+              <label class="toggle-label">
+                <input type="checkbox" id="triggerReservationUpdate" checked />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                Reservation Updated
+              </label>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="saveConfig()">💾 Save Configuration</button>
+            <button class="btn btn-ghost" onclick="testEmail()">📧 Send Test Email</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Event Monitor -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon monitor-icon">📡</div>
+          <div>
+            <div class="card-title">Live Event Monitor</div>
+            <div class="card-sub">Real-time FSM activity and reservation events</div>
+          </div>
+          <div class="event-counter" id="eventCounter">0 events</div>
+        </div>
+        <div class="card-body" id="eventFeed">
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <div>Listening for FSM events...</div>
+            <div class="empty-sub">Activity and Reservation changes will appear here</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Email Log -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon log-icon">📬</div>
+          <div>
+            <div class="card-title">Email Dispatch Log</div>
+            <div class="card-sub">History of sent notification emails</div>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="clearLog()">Clear</button>
+        </div>
+        <div class="card-body" id="emailLog">
+          <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <div>No emails sent yet</div>
+            <div class="empty-sub">Emails will appear here once triggered</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="emailService.js"></script>
+  <script src="fsmExtension.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>

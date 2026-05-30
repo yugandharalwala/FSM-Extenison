@@ -1,0 +1,50 @@
+{
+  "name": "FSM Email Notifier",
+  "description": "Sends automated email notifications to the assigned Field Service Engineer and configured Distribution Lists on Activity and Reservation create/update events in SAP FSM.",
+  "version": "1.0.0",
+  "author": "FSM Custom Extensions",
+  "type": "CUSTOM_EXTENSION",
+  "entryPoint": "index.html",
+  "sdkVersion": ">=1.0.0",
+  "requiredPermissions": [
+    "ACTIVITY_READ",
+    "ACTIVITY_WRITE",
+    "PERSON_READ",
+    "RESERVATION_READ",
+    "RESERVATION_WRITE"
+  ],
+  "events": [
+    {
+      "name": "OBJECT_SAVE",
+      "entities": ["Activity", "Reservation"],
+      "description": "Triggers on new Activity or Reservation creation"
+    },
+    {
+      "name": "OBJECT_UPDATE",
+      "entities": ["Activity", "Reservation"],
+      "description": "Triggers on Activity or Reservation updates"
+    }
+  ],
+  "configuration": {
+    "emailjsServiceId": {
+      "type": "string",
+      "label": "EmailJS Service ID",
+      "required": true
+    },
+    "emailjsTemplateId": {
+      "type": "string",
+      "label": "EmailJS Template ID",
+      "required": true
+    },
+    "emailjsPublicKey": {
+      "type": "string",
+      "label": "EmailJS Public Key",
+      "required": true
+    },
+    "distributionLists": {
+      "type": "array",
+      "label": "Distribution List Emails",
+      "required": false
+    }
+  }
+}
