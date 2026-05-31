@@ -22,7 +22,7 @@ const FSM_ENTITY_TYPES = {
 /* ── SDK Initialization ── */
 function initFSMShell() {
   // The FSM Shell SDK injects ShellSdk into the window when loaded
-  if (!window.ShellSdk) {
+  if (!window.FSMShell.ShellSdk) {
     console.warn('[FSM Notifier] ShellSdk not available — running in standalone/demo mode.');
     setConnectionState('demo');
     startDemoMode();
